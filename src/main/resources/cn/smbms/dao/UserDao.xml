@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.smbms.dao.UserDao">
+    <!-- 添加用户   -->
+    <insert id="addUser" parameterType="User">
+        insert into smbms_user (userCode,userName,userPassword)values (#{userCode} , #{userName} , #{userPassword})
+    </insert>
+    <!-- 删除用户   -->
+    <delete id="deleteUser" parameterType="int">
+        delete from smbms_user where id = #{id}
+    </delete>
+    <!-- 修改用户信息   -->
+    <update id="updateUser" parameterType="User">
+        update smbms_user set userCode=#{userCode},userName=#{userName},userPassword=#{userPassword} where id = #{id}
+    </update>
+    <!-- 查询所有用户信息   -->
+    <select id="getUserList" parameterType="User" resultType="User">
+        select * from smbms_user
+    </select>
+
+    <select id="login" resultType="User">
+        select * from smbms_user where userCode=#{userName} and userPassword=#{password}
+    </select>
+</mapper>
